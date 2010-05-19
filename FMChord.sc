@@ -1,26 +1,3 @@
-
-
-// ~fm = { arg carrier = 7, modulator = -4, index=9;
-// 	// criar o acorde inicial de Gondwana
-// 	// sol3 (392Hz) e sol#2 (207,65Hz)
-
-// 	var add, diff;
-// 	var carrierCps = (carrier + 60).midicps;
-// 	var modulatorCps = (modulator + 60).midicps;
-
-// 	add = index.collect {|i|
-// 		carrierCps + ((i+1) * modulatorCps);	
-// 	};
-
-// 	diff = index.collect {|i|
-// 		carrierCps - ((i+1) * modulatorCps);	
-// 	};
-
-// 	[(add.cpsmidi - 60).round(0.5), (diff.cpsmidi -60).round(0.5)]
-// };
-	
-// ~fm.value
-
 /*
 	FMChord.sc
 	SCLy project
