@@ -10,10 +10,12 @@
 	a = FMChord.new(7, -5, 9)
 	a.index
 	a.car
+	a.car = 4
 	a.mod	
 	a.addChord
 	a.diffChord	
 	a.fmChord	
+
 	
 
  Created by Bernardo Barros on 2010-05-19.
@@ -23,7 +25,7 @@
 
 FMChord : Chord {
 
-	var <car, <mod, <index;
+	var <>car, <>mod, <>index;
 
 	*new {|car, mod, index|
 		^super.new.init(car, mod, index);
@@ -55,8 +57,10 @@ FMChord : Chord {
 		^Chord.new(diffChordCps.cpsmidi - 60);
 	}
 
-	fmChord {
-		^Chord.new(this.addChord.noteArray ++ this.diffChord.noteArray);
+	fmChord {	
+		^Chord.new(
+			(this.diffChord.notenumber) ++ (this.addChord.notenumber)
+		);
 	}
 
 }
