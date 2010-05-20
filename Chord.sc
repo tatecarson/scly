@@ -14,6 +14,16 @@
 	c.editLy
 	c.openPdf
 
+	////////////////////
+	// Set operations //
+	////////////////////
+
+	a = Chord.new([1, 2, 3])
+	b = Chord.new([2, 3, 4])
+	c = a - b
+	c.notenumber
+
+
 */
 
 Chord  {
@@ -79,33 +89,33 @@ Chord  {
  	}
 	
 
-// 	== { arg otherNote; 
-// // 		Are these tow Notes equal?
-// 		if(
-// 			otherNote.class != Note,
-// 			{"This is not a Note Object".warn}
-// 		);
-		
-// 		^this.notenumber == otherNote.notenumber; 
-	
-// 	} 
-	
-// 	+ { |aNote| ^Note(midi: aNote.asNote.midi + midi); }
-// 	- { |aNote| ^Note(midi: midi - aNote.asNote.midi); }
-// 	* { |aNumber| ^Note(midi: midi * aNumber); }
-// 	/ { |aNumber| ^Note(midi: midi / aNumber); }
-// 	min { |aNote| ^Note(midi: midi.min(aNote.asNote.midi) ); }
-// 	max { |aNote| ^Note(midi: midi.max(aNote.asNote.midi) ); }
-// 	wrap { arg lo = "C-2", hi = "G8"; ^Note(midi: midi.wrap(lo.asNote.midi, hi.asNote.midi) ) }
-// 	clip { arg lo = "C-2", hi = "G8"; ^Note(midi: midi.clip(lo.asNote.midi, hi.asNote.midi) ) }
-// 	rand { arg lo = "C-2", step = 1; lo = lo.asNote.midi; ^Note(midi: (midi - lo).rand.round(step) + lo); }
-// 	*rand { arg lo = "C-2", hi = "G8", step = 1; ^hi.asNote.rand(lo, step); }
-// 	round { |aNumber = 1| this.midi = midi.round(aNumber); ^this; }
-	
+	////////////////////////////////////////
+	////////// Set Operations //////////////
+	////////////////////////////////////////
 
+	// see Set Help File
 
-	// classvar
-// 	*initClass {	
-// 	}
+	- { arg otherChord;
+		^Chord(this.notenumber.asSet - otherChord.notenumber.asSet)
+	}
 	
+	-- { arg otherChord;
+		^Chord(this.notenumber.asSet -- otherChord.notenumber.asSet)
+	}
+
+	| { arg otherChord;
+		^Chord(this.notenumber.asSet | otherChord.notenumber.asSet)
+	}
+	
+	& { arg otherChord;
+		^Chord(this.notenumber.asSet & otherChord.notenumber.asSet)
+	}
+
+	isSubsetOf { arg otherChord;
+		^Chord(
+			this.notenumber.asSet.isSubsetOf(otherChord.notenumber.asSet)
+		)
+	
+	}
+
 }
