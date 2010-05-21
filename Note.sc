@@ -35,10 +35,12 @@
 	// Articulations:
 
 	a = Note(5)
-	a.putArtic(\red)
-	a.artic
-	a.afterNoteString
-	a.beforeNoteString
+	a.putAfterNote("-.")
+	a.afterNote
+	a.putAfterNote("->")
+	a.afterNote	
+	a.putBeforeNote("\\red ")
+	a.beforeNote
 
 	Created by Bernardo Barros on 2010-05-12.
 */
@@ -47,7 +49,7 @@ Note {
 	
 	classvar <pitchList, <octaveList, <pitchDict, <octDict, <afterNoteDict, <beforeNoteDict;
 	var <notenumber, <>duration, qt;
-	var <pitch, <octave, <artic, <beforeNoteString, <afterNoteString;
+	var <pitch, <octave, <artic, <>afterNote, <>beforeNote;
 	var <>filename = "supercollider", <>folder="~/SCLy/output/";
 	
 	*new {|notenumber|
@@ -55,7 +57,9 @@ Note {
 		}
 		
 	init {arg thisnotenumber;
-		this.notenumber_(thisnotenumber);	
+		this.notenumber_(thisnotenumber);
+		this.afterNote = [];
+		this.beforeNote = [];
 		}
 
  	qt {
@@ -83,24 +87,25 @@ Note {
 		^pitch ++ octave;
 		}
 		
-	putArtic { arg newArtic;
-	
-		if(
-			newArtic.notNil,
-			{ artic = artic.add(newArtic)}
-		);
+	putAfterNote { arg newArticulation;
 
 		if(
-		afterNoteDict[newArtic].notNil,
-			{afterNoteString = afterNoteString.add(afterNoteDict[newArtic])}
-		);
-
-		if(
-		beforeNoteDict[newArtic].notNil,
-			{beforeNoteString = beforeNoteString.add(beforeNoteDict[newArtic])}
-		);
-
+			afterNote.includes(newArticulation) == false,
+			{afterNote = afterNote.add(newArticulation)},
+			{"This Array already contains this string".warn}
+		)
 	}
+
+	putBeforeNote { arg newArticulation;
+
+		if(
+			beforeNote.includes(newArticulation) == false,
+			{beforeNote = beforeNote.add(newArticulation)},
+			{"This Array already contains this string".warn}
+		)
+	}
+
+
 
  	lily_ { arg newLilyString;
 		
@@ -252,26 +257,26 @@ Note {
 		];
 	
 
-		afterNoteDict = Dictionary[
-			\staccato -> "-.",
-			\accent -> "->",
-			\tenuto -> "--",
-			\marcato -> "^",
-			\portato -> "-_"
-		];
+// 		afterNoteDict = Dictionary[
+// 			\staccato -> "-.",
+// 			\accent -> "->",
+// 			\tenuto -> "--",
+// 			\marcato -> "^",
+// 			\portato -> "-_"
+// 		];
 		
-		beforeNoteDict = Dictionary[
-			\red -> "\\once \\override NoteHead #'color = #red",
-			\blue -> "\\once \\override NoteHead #'color = #blue",
-			\green -> "\\once \\override NoteHead #'color = #green",
-			\harmonic -> "\\once \\override Staff.NoteHead  #'style = #'harmonic",
-			\harmonicBlack -> "\\once \\override Staff.NoteHead  #'style = #'harmonic-black",
-			\harmonicMixed -> "\\once \\override Staff.NoteHead  #'style = #'harmonic-mixed",
-			\cross -> "\\once \\override Staff.NoteHead  #'style = #'cross", 
-			\xCircle -> "\\once \\override Staff.NoteHead  #'style = #'xcircle",
-			\triangle -> "\\once \\override Staff.NoteHead  #'style = #'triangle",
-			\slash -> "\\once \\override Staff.NoteHead  #'style = #'slash"
-		];
+// 		beforeNoteDict = Dictionary[
+// 			\red -> "\\once \\override NoteHead #'color = #red",
+// 			\blue -> "\\once \\override NoteHead #'color = #blue",
+// 			\green -> "\\once \\override NoteHead #'color = #green",
+// 			\harmonic -> "\\once \\override Staff.NoteHead  #'style = #'harmonic",
+// 			\harmonicBlack -> "\\once \\override Staff.NoteHead  #'style = #'harmonic-black",
+// 			\harmonicMixed -> "\\once \\override Staff.NoteHead  #'style = #'harmonic-mixed",
+// 			\cross -> "\\once \\override Staff.NoteHead  #'style = #'cross", 
+// 			\xCircle -> "\\once \\override Staff.NoteHead  #'style = #'xcircle",
+// 			\triangle -> "\\once \\override Staff.NoteHead  #'style = #'triangle",
+// 			\slash -> "\\once \\override Staff.NoteHead  #'style = #'slash"
+// 		];
 		
 		
 	}
