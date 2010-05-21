@@ -32,15 +32,22 @@
 	a.writeLy
 	a.openPdf
 
+	// Articulations:
+
+	a = Note(5)
+	a.putArtic(\red)
+	a.artic
+	a.afterNoteString
+	a.beforeNoteString
 
 	Created by Bernardo Barros on 2010-05-12.
 */
 
 Note {
 	
-	classvar <pitchList, <octaveList, <pitchDict, <octDict;
+	classvar <pitchList, <octaveList, <pitchDict, <octDict, <afterNoteDict, <beforeNoteDict;
 	var <notenumber, <>duration, qt;
-	var <pitch, <octave;
+	var <pitch, <octave, <artic, <beforeNoteString, <afterNoteString;
 	var <>filename = "supercollider", <>folder="~/SCLy/output/";
 	
 	*new {|notenumber|
@@ -76,7 +83,25 @@ Note {
 		^pitch ++ octave;
 		}
 		
-		
+	putArtic { arg newArtic;
+	
+		if(
+			newArtic.notNil,
+			{ artic = artic.add(newArtic)}
+		);
+
+		if(
+		afterNoteDict[newArtic].notNil,
+			{afterNoteString = afterNoteString.add(afterNoteDict[newArtic])}
+		);
+
+		if(
+		beforeNoteDict[newArtic].notNil,
+			{beforeNoteString = beforeNoteString.add(beforeNoteDict[newArtic])}
+		);
+
+	}
+
  	lily_ { arg newLilyString;
 		
 // 			Change the pitch with a new string in Lilypond Format
@@ -225,6 +250,29 @@ Note {
 			"'''" -> 2,
 			"''''" -> 3
 		];
+	
+
+		afterNoteDict = Dictionary[
+			\staccato -> "-.",
+			\accent -> "->",
+			\tenuto -> "--",
+			\marcato -> "^",
+			\portato -> "-_"
+		];
+		
+		beforeNoteDict = Dictionary[
+			\red -> "\\once \\override NoteHead #'color = #red",
+			\blue -> "\\once \\override NoteHead #'color = #blue",
+			\green -> "\\once \\override NoteHead #'color = #green",
+			\harmonic -> "\\once \\override Staff.NoteHead  #'style = #'harmonic",
+			\harmonicBlack -> "\\once \\override Staff.NoteHead  #'style = #'harmonic-black",
+			\harmonicMixed -> "\\once \\override Staff.NoteHead  #'style = #'harmonic-mixed",
+			\cross -> "\\once \\override Staff.NoteHead  #'style = #'cross", 
+			\xCircle -> "\\once \\override Staff.NoteHead  #'style = #'xcircle",
+			\triangle -> "\\once \\override Staff.NoteHead  #'style = #'triangle",
+			\slash -> "\\once \\override Staff.NoteHead  #'style = #'slash"
+		];
+		
 		
 	}
 	
