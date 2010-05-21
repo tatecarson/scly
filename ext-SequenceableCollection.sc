@@ -1,6 +1,18 @@
 
 + SequenceableCollection {
 
+
+	// Usage:
+	// [1, 2, 1, 1, [2, [1, 1, 1, 1,1]], 3, 1, 1].rotateTree(2)
+	// -> [ 1, 1, 1, 2, [ 1, [ 1, 2, 1, 1, 1 ] ], 1, 1, 3 ]
+
+	rotateTree { arg nRotations = 1 ;
+		var newTree;
+		newTree = this.flat.rotate(nRotations).bubble;
+		^newTree.reshapeLike(this);
+		
+	}
+
 	asLisp { 
 		// output a 'string' with lisplike syntax
 		var lispLike = "( ";
