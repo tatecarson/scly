@@ -10,6 +10,7 @@
 	c.stringArray
 	c.string
 	c.musicString	
+	c.intervals
 	c.writeLy
 	c.editLy
 	c.openPdf
@@ -48,6 +49,17 @@ Chord  {
 		// return an array with booleans
 		^noteArray.collect({|i| i.qt })
 	}
+
+	// returns a list of intervals
+	intervals  { 	
+		var intervals, notes;
+		notes = this.notenumber;
+		(notes.size - 1).do({arg i;
+			intervals = intervals.add(notes[i + 1] - notes[i]);
+		});
+		^intervals;
+	}
+
 
 	stringArray {
 		// return array of strings
@@ -117,5 +129,7 @@ Chord  {
 		)
 	
 	}
+
+
 
 }
