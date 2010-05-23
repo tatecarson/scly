@@ -218,7 +218,7 @@ TendencyMask {
 	}
 
 	plot {
-		this.make.plot(discrete: true);
+		this.make.plot(discrete: true, minval:0.0, maxval:1.0);
 	}
 
 }
