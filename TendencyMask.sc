@@ -181,29 +181,30 @@ TendencyMask {
 
 
 	xLine { arg start, end;
-		this.parX = Env([start, end], [1.0])
+		this.parX = Env([start, end], [1.0]);
 	}
 
 	yLine { arg start, end;
-		this.parY = Env([start, end], [1.0])
+		this.parY = Env([start, end], [1.0]);
 	}
 
 	xyLines { arg startX, startY, endX, endY;
-		this.parX = Env([startX, endX], [1.0])
-		this.parY = Env([startY, endY], [1.0])
+		this.parX = Env([startX, endX], [1.0]);
+		this.parY = Env([startY, endY], [1.0]);
 	}
 
-	aLine { arg start, end;
-		this.parA = Env([start, end], [1.0])
-	}
 
 	aLine { arg start, end;
-		this.parB = Env([start, end], [1.0])
+		this.parA = Env([start, end], [1.0]);
+	}
+
+	bLine { arg start, end;
+		this.parB = Env([start, end], [1.0]);
 	}
 
 	abLines { arg startA, startB, endA, endB;
-		this.parA = Env([startA, endA], [1.0])
-		this.parB = Env([startB, endB], [1.0])
+		this.parA = Env([startA, endA], [1.0]);
+		this.parB = Env([startB, endB], [1.0]);
 	}
 
 

@@ -2,7 +2,7 @@
 + SequenceableCollection {
 
 
-
+	//[1, 2, 3, 4].shake(0.5)
 	shake { arg deviation;
 		^this.collect({|i|
 			i.gaussian(deviation)
