@@ -57,4 +57,11 @@
 		// output string with lisp-like syntax representing a time signature
 		^this.asTimeSigArray.asLisp;
 	}
+
+	brown { arg step=0.1, n=100;	
+		^Pbrown(0.0, this, step, inf).asStream.nextN(n)
+	}
+				// to make a gendy-like profile
+	//1.0.gendy(5, 0.1, 10)	gendy { arg points = 5, step=0.1, n=100, add=0;		^(({this.brown(step, n)}.dup(points)).flop + add)	}
+	
 }
