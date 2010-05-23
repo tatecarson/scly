@@ -182,6 +182,7 @@ TendencyMask {
 
 	xLine { arg start, end;
 		this.parX = Env([start, end], [1.0]);
+		
 	}
 
 	yLine { arg start, end;
@@ -209,6 +210,7 @@ TendencyMask {
 
 
 	make {
+		thisTendency = Tendency.new( parX, parY, parA, parB);
 		^n.collect({arg i; 
 			i = i / n;
 			thisTendency.at(i, dist.asString)
