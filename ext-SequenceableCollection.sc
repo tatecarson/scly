@@ -5,11 +5,17 @@
 	//[1, 2, 3, 4].shake(0.5)
 	shake { arg deviation;
 		^this.collect({|i|
-			i.gaussian(deviation)
-		
+			i.gaussian(deviation)	
 		})
 	
 	}
+
+
+	// interpolate two arrays
+	interpolation { arg n, otherArray;
+		^Array.interpolation(n, this, otherArray )
+	}
+
 	// Already works:
 	// [1, 2, 3, 4].gaussian
 	// [1, 2, 3, 4].cauchy

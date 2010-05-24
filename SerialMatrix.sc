@@ -14,6 +14,8 @@
 	a.revInv
 	a.matrix
 	a.size
+	a.asMatrix
+	a.at(3, 2)
 
 */
 
@@ -36,6 +38,17 @@ SerialMatrix {
 		transpositions = inversion-list[0]%size;
 		matrix = Array.fill(size, {|i| (list + transpositions[i])%size});
 	}
+
+
+	asMatrix {
+		^Matrix.with(matrix)
+	}
+
+	at { arg thisRow, thisCol;
+		^this.asMatrix.at(thisRow, thisCol)
+	}
+
+
 
 	gui {
 		var w, numberBoxes;
