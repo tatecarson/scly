@@ -8,7 +8,7 @@
 	a.string 
 	a.pitch 
 	a.octave
-	a.notenumber = 10
+	a.notenumber = 10	a.lily = "cis'"
 	a.string 
 	a.qt
 	a.cps = 440
@@ -16,6 +16,7 @@
 	a.lily = "cis'"
 	a.string 
 	a.notenumber
+
 
 	// Salvar e abrir ly pdf midi
 	a = Note.new(30)
