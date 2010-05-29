@@ -16,11 +16,11 @@
 	c.openPdf
 
 	////////////////////
-	// Set operations //
+	// Set Operations //
 	////////////////////
 
-	a = Chord.new([1, 2, 3])
-	b = Chord.new([2, 3, 4])
+	A = Chord.New([1, 2, 3])
+	B = Chord.New([2, 3, 4])
 	c = a - b
 	c.notenumber
 

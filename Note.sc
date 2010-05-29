@@ -105,7 +105,11 @@ Note {
 		)
 	}
 
-
+	// transposition
+	t { arg value;
+		this.notenumber = this.notenumber + value;
+	
+	}
 
  	lily_ { arg newLilyString;
 		
