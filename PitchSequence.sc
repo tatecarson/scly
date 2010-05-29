@@ -11,6 +11,10 @@
 	c.musicString
 
 	c = PitchSequence.setString("c d e f")
+
+	c = PitchSequence.new
+	c.putStringGUI
+	c.notenumber
 	
 	c.writeLy
 	c.editLy
@@ -93,6 +97,23 @@ PitchSequence  {
 		this.init(noteArray)
 		
 	}
+	////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////
+
+	putStringGUI {
+		
+		var window, text, button;
+		
+		window = Window("PitchSequence",Rect(80, 60, 330, 250)).front;
+		text = TextView(window,Rect(10, 10, 300, 200));
+		button = Button(window,Rect(200, 220, 100, 20));	
+		button.states_([ [ "Confirm", Color.grey, Color.black ]]);
+		button.action_{
+			this.setString(text.string)
+		};
+		
+	}
+
 	////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////
 
