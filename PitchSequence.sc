@@ -8,7 +8,10 @@
 	c.pitchArray
 	c.qt
 	c.string
-	c.musicString	
+	c.musicString
+
+	c = PitchSequence.setString("c d e f")
+	
 	c.writeLy
 	c.editLy
 	c.openPdf
@@ -24,7 +27,7 @@ PitchSequence  {
 		^super.new.init(noteList);
 		}
 		
-	init {arg noteList;
+	init {arg noteList=[0];
 
 		notenumber = Array.new;
 		pitchArray = Array.new;
@@ -50,6 +53,48 @@ PitchSequence  {
 	string {
 		^this.pitchArray.collect({|i| i.string;})	
 	}
+	
+	////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////
+	// enter a string with notes in Lilypond format
+
+	setString { arg thisString;
+	
+	var output, tempString, noteArray;
+	tempString = "";
+	output = [];
+	
+	thisString.do({|i|
+		i.postln;
+		if( i == 32.asAscii,
+		{
+			output = output.add(tempString);
+			tempString = "";
+		},{
+			tempString = tempString ++ i
+		});
+	});
+
+	if( thisString.last != 32.asAscii,
+		{output = output.add(tempString)}
+	);
+
+		// now output is an Array with notes in String Format
+		// Note understands Strings... so we have to iterate
+		// this Array and make a PitchSequence with Notes
+		noteArray = []; // same size
+		
+		output.do({|i|
+			noteArray = noteArray.add(Note.new(0).lily_(i).notenumber)
+		});
+
+		// Now return a new PitchSequence with this Notes
+		//^noteArray
+		this.init(noteArray)
+		
+	}
+	////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////
 
 	musicString {
 		var out;
@@ -101,33 +146,5 @@ PitchSequence  {
  	}
 	
 
-// 	== { arg otherNote; 
-// // 		Are these tow Notes equal?
-// 		if(
-// 			otherNote.class != Note,
-// 			{"This is not a Note Object".warn}
-// 		);
-		
-// 		^this.notenumber == otherNote.notenumber; 
-	
-// 	} 
-	
-// 	+ { |aNote| ^Note(midi: aNote.asNote.midi + midi); }
-// 	- { |aNote| ^Note(midi: midi - aNote.asNote.midi); }
-// 	* { |aNumber| ^Note(midi: midi * aNumber); }
-// 	/ { |aNumber| ^Note(midi: midi / aNumber); }
-// 	min { |aNote| ^Note(midi: midi.min(aNote.asNote.midi) ); }
-// 	max { |aNote| ^Note(midi: midi.max(aNote.asNote.midi) ); }
-// 	wrap { arg lo = "C-2", hi = "G8"; ^Note(midi: midi.wrap(lo.asNote.midi, hi.asNote.midi) ) }
-// 	clip { arg lo = "C-2", hi = "G8"; ^Note(midi: midi.clip(lo.asNote.midi, hi.asNote.midi) ) }
-// 	rand { arg lo = "C-2", step = 1; lo = lo.asNote.midi; ^Note(midi: (midi - lo).rand.round(step) + lo); }
-// 	*rand { arg lo = "C-2", hi = "G8", step = 1; ^hi.asNote.rand(lo, step); }
-// 	round { |aNumber = 1| this.midi = midi.round(aNumber); ^this; }
-	
-
-
-	// classvar
-// 	*initClass {	
-// 	}
 	
 }
