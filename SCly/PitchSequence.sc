@@ -19,8 +19,16 @@
 	c.writeLy
 	c.editLy
 	c.openPdf
+
+	TODO
+	.putNoteString
+	.putChord
+	.putChordString
+	.putString // for all types
+	.putGUI // for all types
 	
 */
+
 
 PitchSequence  {
 
@@ -49,6 +57,17 @@ PitchSequence  {
 		})
 	}
 	
+	put { arg thisNote;
+		notenumber = notenumber.add(thisNote);
+		case
+		{thisNote.class == Array}
+		{pitchArray = pitchArray.add(Chord.new(thisNote))}
+		
+		{(thisNote.class == Integer).or(thisNote.class == Float)}
+		{pitchArray = pitchArray.add(Note.new(thisNote))};
+	
+	}
+	
  	qt { 
 		// return an array with booleans
 		^pitchArray.collect({|i| i.qt })
@@ -69,7 +88,7 @@ PitchSequence  {
 	output = [];
 	
 	thisString.do({|i|
-		i.postln;
+
 		if( i == 32.asAscii,
 		{
 			output = output.add(tempString);
