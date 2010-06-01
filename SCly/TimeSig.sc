@@ -11,6 +11,7 @@ TimeSig {
 
 	var <>numBeats, <>noteValue, <lispString, <>timeSigArray; 
 
+
 	*new {arg numBeats, noteValue;
 		
 		^super.new.initTimeSig(numBeats, noteValue);

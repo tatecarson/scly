@@ -2,7 +2,19 @@
 + SequenceableCollection {
 
 
-	//[1, 2, 3, 4].shake(0.5)
+	asLispTimeSig {
+		
+		var outString;
+		outString = "(";
+		this.do({|i|
+			i.postln;
+			outString = outString ++ i.asLispTimeSig ++ " "
+		});
+		outString = outString ++ ") ";
+		^outString
+	}
+	
+	
 	shake { arg deviation;
 		^this.collect({|i|
 			i.gaussian(deviation)	
