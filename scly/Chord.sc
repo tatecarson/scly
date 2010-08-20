@@ -1,5 +1,7 @@
 /*
 	Chord.sc
+
+	TODO: change to LilyChord
    
 	Chord representation with Lilypond suport
 	

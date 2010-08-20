@@ -1,5 +1,7 @@
 /*
 	Note.sc
+
+	TODO: change to LilyNote
    
 	Pitch Name with Lilypond suport
 	
