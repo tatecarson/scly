@@ -2,6 +2,8 @@
 	Dyn.sc
 	-----------------------------------
 
+	TODO: change to LilyDyn
+
 	Use:
 
 	a = Dyn(0.9)

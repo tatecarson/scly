@@ -2,6 +2,8 @@
 	DynSeq.sc
 	-----------------------------------
 
+	TODO: change to LilyDynSeq
+
 	Sequenceble Collection of Dyn (Dynamics) Instances
 	See Dyn.sc
 
