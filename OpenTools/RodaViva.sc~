@@ -1,0 +1,29 @@
+/*
+	RodaViva.sc
+	Rotação de um som utilizando Ambisoncs
+
+	Uso:
+	
+	{ RodaViva.ar( Saw.ar(700, mul: 0.3), Tri.ar(0.5)) }.play
+
+
+*/
+
+RodaViva { 
+	
+	*ar { arg soundIn, pos;
+
+		var w, x, y,lf, rf, rr, lr;
+			
+		// codifica para B-format 
+		#w, x, y = PanB2.ar(p, pos, 0.3);
+
+		// decodifica de B-format para quadrifônico, sentido horário
+		#lf, rf, rr, lr = DecodeB2.ar(4, w, x, y);
+
+		// rearranja para uma ordem mais comum: Lf Rf Lr Rr
+		^[lf, rf, lr, rr]
+		
+	}
+
+}
