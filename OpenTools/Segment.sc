@@ -1,7 +1,7 @@
 
 /*
-   «Segment»
-   «SCLy»
+   Segment.sc
+   SCLy
 
    Divides a time span in random smaller sizes with within a given range
 
