@@ -5,6 +5,7 @@
 	Description: Creates a matrix with all possible "serial" combinations
 
 	USAGE:
+
 	a = SerialMatrix.new([1, 2, 3, 4, 5])
 	a.gui
 	a.org(0)
@@ -39,7 +40,6 @@ SerialMatrix {
 		matrix = Array.fill(size, {|i| (list + transpositions[i])%size});
 	}
 
-
 	asMatrix {
 		^Matrix.with(matrix)
 	}
@@ -47,8 +47,6 @@ SerialMatrix {
 	at { arg thisRow, thisCol;
 		^this.asMatrix.at(thisRow, thisCol)
 	}
-
-
 
 	gui {
 		var w, numberBoxes;
@@ -98,7 +96,6 @@ SerialMatrix {
 	revInv {arg number=0;
 	number = number.round.abs%size;
 		^matrix.flop[number].reverse;
-
 	}
 	
 }
