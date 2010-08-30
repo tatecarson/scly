@@ -1,3 +1,17 @@
+/*
+
+	LyShowableObject.sc
+	
+	This is for all objects that can be placed in a score
+
+
+*/
+
+
+
+
+
+
 	// ------------------------------
 	// WRITE 
 	

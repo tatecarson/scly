@@ -1,13 +1,15 @@
 /*
+
 	USAGE:
-	t = TimeSig.new(3, 4) 
+
+	t = LyTimeSig.new(3, 4) 
 	t.numBeats // -> 3
 	t.noteValue // -> 4
 	t.timeSigArray // -> [3, 4]
 	t.asLisp // -> "( 3 4 )"
 */
 
-TimeSig {
+LyTimeSig {
 
 	var <>numBeats, <>noteValue, <lispString, <>timeSigArray; 
 
@@ -18,12 +20,14 @@ TimeSig {
 	}
 
 	initTimeSig {arg thisNumBeats, thisNoteValue;
+
 		this.numBeats_(thisNumBeats);
 		this.noteValue_(thisNoteValue);
 		this.timeSigArray_([thisNumBeats, thisNoteValue]);
 	}
 	
 	asLisp {
+
 		^this.timeSigArray.asLisp;
 	}
 

@@ -1,12 +1,10 @@
 /*
-	Dyn.sc
+	LyDyn.sc
 	-----------------------------------
-
-	TODO: change to LilyDyn
 
 	Use:
 
-	a = Dyn(0.9)
+	a = LyDyn(0.9)
 	a.scDyn
 	a.vol_(0.2)
 	a.str_(\mf)
@@ -22,7 +20,7 @@
 	
 */
 
-Dyn {
+LyDyn {
 	
 	var <scDyn, <lilyDyn, <>scale, <dynScList, <dynDict, <scDynList;
 	

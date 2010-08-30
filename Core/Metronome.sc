@@ -12,8 +12,6 @@
 	m.play;
 	m.stop;
 	
-	Created by Bernardo Barros on 2010-05-21.
-	Copyright 2010 __MyCompanyName__. All rights reserved.
 	
 */
 

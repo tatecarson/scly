@@ -9,8 +9,11 @@
 + Number {
 
 	asTimeSigArray { 
+
 		// output an array representing a time signature
+
 		var timeSig, thisNumber;
+
 		timeSig = [
 			[1, 16], 
 			[1, 8], 
@@ -43,11 +46,14 @@
 		];
 		
 		thisNumber = this.round(0.5).clip(0.5, 14)
+	
 		^timeSig[(thisNumber * 2) -1];
-	}
 
+	}
+	
 	asTimeSig {
 		var x;
+	
 		x = this.asTimeSigArray;
 		^TimeSig.new(x[0], x[1]); 
 
@@ -55,13 +61,18 @@
 
 	asLispTimeSig { 
 		// output string with lisp-like syntax representing a time signature
+	
 		^this.asTimeSigArray.asLisp;
 	}
 
 	brown { arg step=0.1, n=100;	
+
+		// dirty
+		
 		^Pbrown(0.0, this, step, inf).asStream.nextN(n)
 	}
-				// to make a gendy-like profile
+	
+	// to make a gendy-like profile
 	//1.0.gendy(5, 0.1, 10)	gendy { arg points = 5, step=0.1, n=100, add=0;		^(({this.brown(step, n)}.dup(points)).flop + add)	}
 	
 }
