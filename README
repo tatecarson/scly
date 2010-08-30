@@ -1,3 +1,4 @@
-SCLy is a symbolic control system designed to give composers complete control over almost all aspects of the musical score from inside the SuperCollider programming language. For this it uses GNU Lilypond as the music score render, also funcioning as a all purpose wrapper for Lilypond. It is inspired by great works such as Christopher Ariza's athenaCL, Trevor Baca's Abjad and Paul Berg's ACToolBox.
+SCLy is a symbolic control system designed to give composers complete control over almost all aspects of the musical score from inside the SuperCollider programming language. For this it uses GNU Lilypond as the music score render, also funcioning as a all purpose wrapper for Lilypond. 
+
 (c) 2010 Bernardo Barros
-License: GPL
+License: GPL (see COPYING)

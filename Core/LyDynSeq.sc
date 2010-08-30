@@ -11,8 +11,8 @@
 
 	Use:
 
-	a = DynSeq.new([0.3, 0.2, 0.4])	
-	a = DynSeq.new(((1..10)/10).scramble, [\pppp, \ppp, \pp, \p, \mp, \mf, \f, \ff, \fff, \ffff])	
+	a = LyDynSeq.new([0.3, 0.2, 0.4])	
+	a = LyDynSeq.new(((1..10)/10).scramble, [\pppp, \ppp, \pp, \p, \mp, \mf, \f, \ff, \fff, \ffff])	
 	a.dynSeq
 	a.add(0.9)
 	a.add(0.1)
@@ -38,7 +38,7 @@
 	
 */
 
-DynSeq {
+LyDynSeq {
 
 	var <dynSeq, <dynStringList;
 	

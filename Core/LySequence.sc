@@ -1,13 +1,13 @@
 /*
-	Sequence.sc
+	LySequence.sc
 	
 
-	Sequency is a class to represent a Sequency of music elements
+	LySequency is a class to represent a Sequency of music elements
 
-	a = Sequence.new(notes, measures, tree)
+	a = LySequence.new(notes, measures, tree)
 
 	
-	a = Sequence.new([0, 1, 2, 3, 4, 5, 6, 7, 8], [4, 3], [[1, 1, 1, 1, 1], [1, 1, 1]])
+	a = LySequence.new([0, 1, 2, 3, 4, 5, 6, 7, 8], [4, 3], [[1, 1, 1, 1, 1], [1, 1, 1]])
 	a.notes;
 	a.measures;
 	a.tree;
@@ -23,7 +23,7 @@
 */
 
 
-Sequence {
+LySequence {
 
 	classvar measureDict;
 	var  <>notes, <>measures, <>tree;

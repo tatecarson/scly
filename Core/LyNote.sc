@@ -1,16 +1,15 @@
 /*
-	Note.sc
+	LyNote.sc
 
-	TODO: change to LilyNote
-   
 	Pitch Name with Lilypond suport
 	
 	Use:
-	a = Note.new(-11)
+	a = LyNote.new(-11)
 	a.string 
 	a.pitch 
 	a.octave
-	a.notenumber = 10	a.lily = "cis'"
+	a.notenumber = 10	
+	a.lily = "cis'"
 	a.string 
 	a.qt
 	a.cps = 440
@@ -21,7 +20,7 @@
 
 
 	// Salvar e abrir ly pdf midi
-	a = Note.new(30)
+	a = LyNote.new(30)
 	a.filename = "teste2"
 	a.musicString
 	a.writeLy	
@@ -29,7 +28,7 @@
 	a.editLy
 	
 	// Harmonic Series:
-	a = Note(-5)
+	a = LyNote(-5)
 	a = a.makeHarmonicSeries
 	a.notenumber
 	a.writeLy
@@ -37,7 +36,7 @@
 
 	// Articulations:
 
-	a = Note(5)
+	a = LyNote(5)
 	a.putAfterNote("-.")
 	a.afterNote
 	a.putAfterNote("->")
@@ -48,7 +47,7 @@
 	Created by Bernardo Barros on 2010-05-12.
 */
 
-Note {
+LyNote {
 	
 	classvar <pitchList, <octaveList, <pitchDict, <octDict, <afterNoteDict, <beforeNoteDict;
 	var <notenumber, <>duration, qt;
@@ -60,13 +59,13 @@ Note {
 		}
 		
 	init {arg thisnotenumber;
-		this.notenumber_(thisnotenumber);
+o		this.notenumber_(thisnotenumber);
 		this.afterNote = [];
 		this.beforeNote = [];
 		}
 
  	qt {
-// 		Is this a quarter-tone pitch?
+
 		^notenumber.frac.round(0.5) == (0.5)
  	}
 
@@ -86,6 +85,7 @@ Note {
 		}
 	
 	string {
+
 		// return a string with with pitch and octave
 		^pitch ++ octave;
 		}

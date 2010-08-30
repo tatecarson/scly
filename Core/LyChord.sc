@@ -1,11 +1,9 @@
 /*
-	Chord.sc
-
-	TODO: change to LilyChord
+	LyChord.sc
    
-	Chord representation with Lilypond suport
+	LyChord representation with Lilypond suport
 	
-	c = Chord.new([10, 11])
+	c = LyChord.new([10, 11])
 	c.notenumber
 	c.noteArray
 	c.qt
@@ -21,15 +19,15 @@
 	// Set Operations //
 	////////////////////
 
-	A = Chord.New([1, 2, 3])
-	B = Chord.New([2, 3, 4])
+	A = LyChord.New([1, 2, 3])
+	B = LyChord.New([2, 3, 4])
 	c = a - b
 	c.notenumber
 
 
 */
 
-Chord  {
+LyChord  {
 
 	var <>filename = "supercollider";
 	var <>notenumber, <>noteArray;

@@ -1,15 +1,15 @@
 /*
 
-	RhythmicCell.sc
+	LyRhythmicCell.sc
 	
 	Let's leave the Lilypond measure  representation ("\time 4/8") to another class...
 
 	Use:
-	a = RhythmicCell([4, [1, 1, [1, [1, 1, 1, 1]], 1, 1]])
+	a = LyRhythmicCell([4, [1, 1, [1, [1, 1, 1, 1]], 1, 1]])
 	a.asLySequence	
 
 	Internal or with 1-deep Arrays:
-	a = RhythmicCell([4, [1, 1, 1, 1, 1]])
+	a = LyRhythmicCell([4, [1, 1, 1, 1, 1]])
 	a.size
 	a.tree
 	a.adjustedList
@@ -24,7 +24,7 @@
 	Make it more elegant...
 */
 
-RhythmicCell {
+LyRhythmicCell {
 
 	classvar noteNotationScale, noteDurationScale, durationDict, eightNomeScale, measureScaleLily, measureDict;
 	var  <>size, <>tree, <tuplet, <>arrayTree, <>pitchStream, <tupletString;
