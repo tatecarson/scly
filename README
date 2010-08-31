@@ -1,4 +1,16 @@
-SCLy is a symbolic control system designed to give composers complete control over almost all aspects of the musical score from inside the SuperCollider programming language. For this it uses GNU Lilypond as the music score render, also funcioning as a all purpose wrapper for Lilypond. 
 
-(c) 2010 Bernardo Barros
-License: GPL (see COPYING)
+
+OpenToolbox is a symbolic control system designed to give composers complete control over almost all aspects of the musical score from inside the SuperCollider programming language. For this it uses GNU Lilypond as the music score render, also funcioning as a all purpose wrapper for Lilypond. 
+
+
+---
+
+SuperCollider dependencies (quarks): Tendency
+
+System dependencies: Lilypond
+              
+---
+
+(c) 2009-2010 Bernardo Barros
+License: GPL 
+(see COPYING)
