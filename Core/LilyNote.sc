@@ -1,10 +1,10 @@
 /*
-	LyNote.sc
+	LilyNote.sc
 
-	Pitch Name with Lilypond suport
+	Pitch representation with Lilypond suport
 	
 	Use:
-	a = LyNote.new(-11)
+	a = LilyNote.new(-11)
 	a.string 
 	a.pitch 
 	a.octave
@@ -20,7 +20,7 @@
 
 
 	// Salvar e abrir ly pdf midi
-	a = LyNote.new(30)
+	a = LilyNote.new(30)
 	a.filename = "teste2"
 	a.musicString
 	a.writeLy	
@@ -28,7 +28,7 @@
 	a.editLy
 	
 	// Harmonic Series:
-	a = LyNote(-5)
+	a = LilyNote(-5)
 	a = a.makeHarmonicSeries
 	a.notenumber
 	a.writeLy
@@ -36,7 +36,7 @@
 
 	// Articulations:
 
-	a = LyNote(5)
+	a = LilyNote(5)
 	a.putAfterNote("-.")
 	a.afterNote
 	a.putAfterNote("->")
@@ -47,19 +47,19 @@
 	Created by Bernardo Barros on 2010-05-12.
 */
 
-LyNote {
+LilyNote {
 	
 	classvar <pitchList, <octaveList, <pitchDict, <octDict, <afterNoteDict, <beforeNoteDict;
 	var <notenumber, <>duration, qt;
 	var <pitch, <octave, <artic, <>afterNote, <>beforeNote;
-	var <>filename = "supercollider", <>folder="~/SCLy/output/";
+	var <>filename = "supercollider", <>folder="~/scwork/scly/output/";
 	
 	*new {|notenumber|
 		^super.new.init(notenumber);
 		}
 		
 	init {arg thisnotenumber;
-o		this.notenumber_(thisnotenumber);
+		this.notenumber_(thisnotenumber);
 		this.afterNote = [];
 		this.beforeNote = [];
 		}
@@ -175,26 +175,27 @@ o		this.notenumber_(thisnotenumber);
 
 	// ------------------------------
 	// WRITE 
-	
+	// TODO: Move this method to superclass LilyShowableObject
+
 	writeLy {
 		/*
 			Write the string to a temporary ly file
 		*/ 
 		var file, fWrite, outputFile;		
-		outputFile =  LyConfig.options[\output] ++ this.filename;
-		fWrite = File(LyConfig.options[\output] ++ this.filename ++ ".ly", "w");
+		outputFile =  LilyConfig.options[\output] ++ this.filename;
+		fWrite = File(LilyConfig.options[\output] ++ this.filename ++ ".ly", "w");
 		fWrite.write(this.musicString);
 		fWrite.close;
-		("/Applications/LilyPond.app/Contents/Resources/bin/lilypond -o" ++ LyConfig.options[\output] ++ this.filename ++ " " ++ LyConfig.options[\output] ++ this.filename ++ ".ly").unixCmd;
+		("lilypond -o" ++ LyConfig.options[\output] ++ this.filename ++ " " ++ LilyConfig.options[\output] ++ this.filename ++ ".ly").unixCmd;
 
 	}
 
 	editLy {
-		("open " ++ LyConfig.options[\output] ++ this.filename ++ ".ly").unixCmd;
+		("open " ++ LilyConfig.options[\output] ++ this.filename ++ ".ly").unixCmd;
 	}
 
 	openPdf {
-		("open " ++ LyConfig.options[\output] ++ this.filename ++ ".pdf").unixCmd;
+		("open " ++ LilyConfig.options[\output] ++ this.filename ++ ".pdf").unixCmd;
 	}
 
 	

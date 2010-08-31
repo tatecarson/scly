@@ -9,7 +9,7 @@
 	t.asLisp // -> "( 3 4 )"
 */
 
-LyTimeSig {
+LilyTimeSig {
 
 	var <>numBeats, <>noteValue, <lispString, <>timeSigArray; 
 

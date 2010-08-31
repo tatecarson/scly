@@ -1,5 +1,6 @@
-/*
-	LyDynSeq.sc
+/* 
+
+	LilyDynSeq.sc
 	-----------------------------------
 
 	Sequenceble Collection of Dyn (Dynamics) Instances
@@ -11,8 +12,13 @@
 
 	Use:
 
-	a = LyDynSeq.new([0.3, 0.2, 0.4])	
-	a = LyDynSeq.new(((1..10)/10).scramble, [\pppp, \ppp, \pp, \p, \mp, \mf, \f, \ff, \fff, \ffff])	
+	a = LilyDynSeq.new([0.3, 0.2, 0.4])	
+
+	a = LilyDynSeq.new(
+	        ((1..10)/10).scramble, 
+	        [\pppp, \ppp, \pp, \p, \mp, \mf, \f, \ff, \fff, \ffff]
+	);
+	
 	a.dynSeq
 	a.add(0.9)
 	a.add(0.1)
@@ -38,7 +44,7 @@
 	
 */
 
-LyDynSeq {
+LilyDynSeq {
 
 	var <dynSeq, <dynStringList;
 	
@@ -55,7 +61,7 @@ LyDynSeq {
 
 	dynSeq_ { arg newDynSeq;
 		dynSeq = newDynSeq.collect({|i|
-			Dyn(i, dynStringList);
+			LilyDyn(i, dynStringList);
 		});
 	}
 
@@ -68,7 +74,7 @@ LyDynSeq {
 	vol_ { arg newDynSeq;
 		dynSeq = Array.newClear(newDynSeq.size);
 		dynSeq = newDynSeq.collect({|i|
-			Dyn(i, dynStringList);
+			LilyDyn(i, dynStringList);
 		});
 	}
 
@@ -93,50 +99,49 @@ LyDynSeq {
 		newVol = this.scDyn.normalize * (newMax - newMin) + newMin;
 
 		dynSeq = newVol.collect({|i|
-			Dyn(i, newDynString);
+			LilyDyn(i, newDynString);
 		});
 	}
 
 	invert { arg newDynString = dynStringList;
 		dynSeq = this.scDyn.invert.collect({|i|
-			Dyn(i, newDynString);
+			LilyDyn(i, newDynString);
 		});
 	}
 
 	reverse { arg newDynString = dynStringList;
 		dynSeq = this.scDyn.reverse.collect({|i|
-			Dyn(i, newDynString);
+			LilyDyn(i, newDynString);
 		});
 	}
 
 	scramble { arg newDynString = dynStringList;
 		dynSeq = this.scDyn.scramble.collect({|i|
-			Dyn(i, newDynString);
+			LilyDyn(i, newDynString);
 		});
 	}
 
 
 	rotate { arg thisArg, newDynString = dynStringList;
 		dynSeq = this.scDyn.rotate(thisArg).collect({|i|
-			Dyn(i, newDynString);
+			LilyDyn(i, newDynString);
 		});
 	}
 
 	add { arg thisArg, newDynString = dynStringList;
 		dynSeq = this.scDyn.add(thisArg).collect({|i|
-			Dyn(i, newDynString);
+			LilyDyn(i, newDynString);
 		});
 	}
 	
 	permute { arg thisArg, newDynString = dynStringList;
 		dynSeq = this.scDyn.permute(thisArg).collect({|i|
-			Dyn(i, newDynString);
+			LilyDyn(i, newDynString);
 		});
 	}	
-
 	
 	mean { 
-		^Dyn(this.scDyn.mean, dynStringList);
+		^LilyDyn(this.scDyn.mean, dynStringList);
 	}	
 
 	first { 
@@ -164,8 +169,11 @@ LyDynSeq {
 	}
 
 	setTable { arg n;
+
 		var thisWindow, thisMultiSlider, thisArray;
+
 		thisArray = Array.newClear(n);
+
 		thisWindow = Window.new(this.class.asString, Rect(316, 409, n*13+20, 220)).front;
 		
 		thisMultiSlider = GUI.multiSliderView.new(thisWindow,Rect(7, 9, n*13+2, 200));
@@ -177,7 +185,7 @@ LyDynSeq {
 			this.asString.postln;
 		};
 
-		}
+	}
 	
 
 }

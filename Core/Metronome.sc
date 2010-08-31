@@ -1,8 +1,5 @@
-
 /*
-	
-	«Metronome.sc»
-	«SCLy»
+	Metronome.sc
 	
 	A Metronome with support for changing tempos
 	
@@ -11,11 +8,8 @@
 	m = Metronome.new([[120, 4], [90, 4], [60, 4]]);
 	m.play;
 	m.stop;
-	
-	
+		
 */
-
-
 
 Metronome {
 	

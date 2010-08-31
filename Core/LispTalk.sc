@@ -17,6 +17,8 @@
 	a.string // -> ( 1 1 1 1 )
 	a.writeString // write "supercollider" in "/tmp/"
 	a.writeString(filename: \otherKey) // write to the file "otherKey" 
+
+	
 */
 
 LispTalk {
