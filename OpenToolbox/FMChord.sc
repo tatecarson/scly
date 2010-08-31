@@ -23,7 +23,7 @@
 */
 
 
-FMChord : Chord {
+FMChord : LyChord {
 
 	var <>car, <>mod, <>index;
 

@@ -1,10 +1,10 @@
 /*
-	LyDynamics.sc
+	LilyDynamics.sc
 	-----------------------------------
 
 	Use:
 
-	a = LyDynamics(0.9)
+	a = LilyDynamics(0.9)
 	a.scDyn
 	a.dynStringList
 	a.size
@@ -17,7 +17,7 @@
 	
 */
 
-LyDynamics {
+LilyDynamics {
 	
 	var <scDyn, <lilyDyn, <dynStringList, <dynScList, <dynDict, <scDynList;
 	

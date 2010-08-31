@@ -1,7 +1,6 @@
 /*
 
    TimeSpan.sc
-   SCLy
    
 	Simple class to work with time span durations.
 	Can handle duration and in number of quavers with tempo indication.

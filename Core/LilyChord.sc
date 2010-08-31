@@ -1,9 +1,10 @@
-/*
-	LyChord.sc
+/*  
+
+	LilyChord.sc
    
-	LyChord representation with Lilypond suport
+	a Chord score representation with Lilypond suport
 	
-	c = LyChord.new([10, 11])
+	c = LilyChord.new([10, 11])
 	c.notenumber
 	c.noteArray
 	c.qt
@@ -19,17 +20,17 @@
 	// Set Operations //
 	////////////////////
 
-	A = LyChord.New([1, 2, 3])
-	B = LyChord.New([2, 3, 4])
+	A = LilyChord.New([1, 2, 3])
+	B = LilyChord.New([2, 3, 4])
 	c = a - b
 	c.notenumber
 
 
 */
 
-LyChord  {
+LilyChord  {
 
-	var <>filename = "supercollider";
+	var <>filename = "supercollider"; // <--- change this?
 	var <>notenumber, <>noteArray;
 
 	*new {|noteList|
@@ -46,7 +47,7 @@ LyChord  {
 	}
 	
  	qt { 
-		// return an array with booleans
+		// return an array with booleans (maybe useful)
 		^noteArray.collect({|i| i.qt })
 	}
 
@@ -80,24 +81,39 @@ LyChord  {
 	}
 	
 	writeLy {
-		/*
+
+		/*  * *  * *  * *  * *  * *  * *  * *  * *  * * 
+
 			Write the string to a temporary ly file
-		*/ 
+
+		 * *  * *  * *  * *  * *  * *  * *  * *  * *  * * */
+
 		var file, fWrite, outputFile;		
-		outputFile =  LyConfig.options[\output] ++ this.filename;
-		fWrite = File(LyConfig.options[\output] ++ this.filename ++ ".ly", "w");
+
+		outputFile =  LilyConfig.options[\output] ++ this.filename;
+
+		fWrite = File(LilyConfig.options[\output] ++ this.filename ++ ".ly", "w");
+
 		fWrite.write(this.musicString);
+
 		fWrite.close;
-		("/Applications/LilyPond.app/Contents/Resources/bin/lilypond -o" ++ LyConfig.options[\output] ++ this.filename ++ " " ++ LyConfig.options[\output] ++ this.filename ++ ".ly").unixCmd;
+
+		/* * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * *
+
+			call lilypond:
+
+			* * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * */
+
+		("lilypond -o" ++ LilyConfig.options[\output] ++ this.filename ++ " " ++ LilyConfig.options[\output] ++ this.filename ++ ".ly").unixCmd;
 	
 	}
 	
 	editLy {
-		("open " ++ LyConfig.options[\output] ++ this.filename ++ ".ly").unixCmd;
+		("open " ++ LilyConfig.options[\output] ++ this.filename ++ ".ly").unixCmd;
 	}
 	
 	openPdf {
-		("open " ++ LyConfig.options[\output] ++ this.filename ++ ".pdf").unixCmd;
+		("open " ++ LilyConfig.options[\output] ++ this.filename ++ ".pdf").unixCmd;
  	}
 	
 
@@ -108,23 +124,23 @@ LyChord  {
 	// see Set Help File
 
 	- { arg otherChord;
-		^Chord(this.notenumber.asSet - otherChord.notenumber.asSet)
+		^LilyChord(this.notenumber.asSet - otherChord.notenumber.asSet)
 	}
 	
 	-- { arg otherChord;
-		^Chord(this.notenumber.asSet -- otherChord.notenumber.asSet)
+		^LilyChord(this.notenumber.asSet -- otherChord.notenumber.asSet)
 	}
 
 	| { arg otherChord;
-		^Chord(this.notenumber.asSet | otherChord.notenumber.asSet)
+		^LilyChord(this.notenumber.asSet | otherChord.notenumber.asSet)
 	}
 	
 	& { arg otherChord;
-		^Chord(this.notenumber.asSet & otherChord.notenumber.asSet)
+		^LilyChord(this.notenumber.asSet & otherChord.notenumber.asSet)
 	}
 
 	isSubsetOf { arg otherChord;
-		^Chord(
+		^LilyChord(
 			this.notenumber.asSet.isSubsetOf(otherChord.notenumber.asSet)
 		)
 	

@@ -1,13 +1,12 @@
 /*
-	LySequence.sc
+	LilySequence.sc
 	
 
-	LySequency is a class to represent a Sequency of music elements
+	LilySequency is a class to represent a Sequency of music elements
 
 	a = LySequence.new(notes, measures, tree)
-
 	
-	a = LySequence.new([0, 1, 2, 3, 4, 5, 6, 7, 8], [4, 3], [[1, 1, 1, 1, 1], [1, 1, 1]])
+	a = LilySequence.new([0, 1, 2, 3, 4, 5, 6, 7, 8], [4, 3], [[1, 1, 1, 1, 1], [1, 1, 1]])
 	a.notes;
 	a.measures;
 	a.tree;
@@ -20,10 +19,14 @@
 	a.asPitchSequence
 	
 	a.lily
+
+	TODO: this is the most problematic piece, maybe it has to be rewritten from scratch
+	It uses the concept of rhythmic trees like OpenMusic
+
 */
 
 
-LySequence {
+LilySequence {
 
 	classvar measureDict;
 	var  <>notes, <>measures, <>tree;
@@ -38,7 +41,8 @@ LySequence {
 		measures = newMeasures; 
 		tree = newTree;
 	}
-	
+
+	// Da onde vem isso?? Não lembro!
 	asPitchSequence {
 		^PitchSequence.new(notes);
 	}
@@ -68,7 +72,7 @@ LySequence {
 		 	if( // if it does not have secondary tuplets
 				this.tree[i].hasArray == false,
 				{
-					measureRhythm = RhythmCell.new(measures[i], tree[i]);
+					measureRhythm = LilyRhythmCell.new(measures[i], tree[i]);
 					measure = measureRhythm.asTimeSigString; // this measure		
 					measureProportion = measureRhythm.adjustedList; // this measure tree
 					measureTuplet = measureRhythm.grupetto; // tuplet
@@ -88,7 +92,7 @@ LySequence {
 					
 					// if the measure as a whole need a tuplet??
 					thisSum = this.tree[i].otherSum;
-					measureRhythm = RhythmCell.new(measures[i], tree[i].extractFlat);
+					measureRhythm = LilyRhythmCell.new(measures[i], tree[i].extractFlat);
 					measure = measureRhythm.asTimeSigString; // this measure // "measure" is the time signature string
 					measureProportion = measureRhythm.adjustedList; // this measure tree
 					measureTuplet = measureRhythm.grupetto; // tuplet
@@ -116,7 +120,7 @@ LySequence {
 							//////////////////////////////////
 							{ // this is a secondary tuplet
 								"---->".postln;
-								secondaryCell = RhythmCell.new(measureProportion[h].postln, j[1].postln);
+								secondaryCell = LilyRhythmCell.new(measureProportion[h].postln, j[1].postln);
 								localTuplet = secondaryCell.grupetto;
 								localLy = secondaryCell.adjustedLy;
 								localString = "";

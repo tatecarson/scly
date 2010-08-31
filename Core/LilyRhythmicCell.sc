@@ -1,11 +1,11 @@
 /*
 
-	LyRhythmicCell.sc
+	LilyRhythmicCell.sc
 	
 	Let's leave the Lilypond measure  representation ("\time 4/8") to another class...
 
 	Use:
-	a = LyRhythmicCell([4, [1, 1, [1, [1, 1, 1, 1]], 1, 1]])
+	a = LilyRhythmicCell([4, [1, 1, [1, [1, 1, 1, 1]], 1, 1]])
 	a.asLySequence	
 
 	Internal or with 1-deep Arrays:
@@ -24,7 +24,7 @@
 	Make it more elegant...
 */
 
-LyRhythmicCell {
+LilyRhythmicCell {
 
 	classvar noteNotationScale, noteDurationScale, durationDict, eightNomeScale, measureScaleLily, measureDict;
 	var  <>size, <>tree, <tuplet, <>arrayTree, <>pitchStream, <tupletString;
@@ -125,11 +125,11 @@ LyRhythmicCell {
 			if(item.isArray == false, {tempTree = tempTree.add(item)})});	
 		
 
-		outputString = outputString ++ "\n \t" ++ RhythmicCell([size, tempTree]).lyGrupetto ++ " "; 
+		outputString = outputString ++ "\n \t" ++ LilyRhythmicCell([size, tempTree]).lyGrupetto ++ " "; 
 		//"outputString ---->  ".post; outputString.postln;
 		//"tempTree----> ".post; tempTree.postln;
 
-		tempTreeAdjusted = RhythmicCell([size, tempTree]).adjustedList;
+		tempTreeAdjusted = LilyRhythmicCell([size, tempTree]).adjustedList;
 		
 		//"tempTreeAdjusted---> ".post; tempTreeAdjusted.postln;
 
@@ -148,7 +148,7 @@ LyRhythmicCell {
 					//"ARRAY".postln;
 					//i.postln;
 					//RhythmicCell.new(thisTree.at(counter)).asLyString.postln;
-					outputString = outputString ++ "\n \t \t" ++ RhythmicCell.new(thisTree.at(counter)).asLyString ++ " } \n \t";
+					outputString = outputString ++ "\n \t \t" ++ LilyRhythmicCell.new(thisTree.at(counter)).asLyString ++ " } \n \t";
 				};
 				///////////////////////
 			}

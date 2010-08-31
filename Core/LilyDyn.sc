@@ -1,10 +1,10 @@
-/*
-	LyDyn.sc
+/* * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * *
+	LilyDyn.sc
 	-----------------------------------
 
 	Use:
 
-	a = LyDyn(0.9)
+	a = LilyDyn(0.9)
 	a.scDyn
 	a.vol_(0.2)
 	a.str_(\mf)
@@ -18,9 +18,9 @@
 	a.string_(\mp)
 	a.scDyn
 	
-*/
+* * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * **/
 
-LyDyn {
+LilyDyn {
 	
 	var <scDyn, <lilyDyn, <>scale, <dynScList, <dynDict, <scDynList;
 	
@@ -31,7 +31,6 @@ LyDyn {
 	initDyn { arg newScDyn=0.5, newStringList = [\ppp, \pp, \p, \mp, \mf, \f, \ff, \fff];
 		this.scDyn_(newScDyn);
 		scale = newStringList;
-
 	}
 
 	scDyn_ { arg newScDyn;
@@ -41,8 +40,6 @@ LyDyn {
 	vol_ { arg newScDyn;
 		scDyn = newScDyn;
 	}
-
-
 
 	size {
 		^scale.size;
@@ -62,26 +59,22 @@ LyDyn {
 	showDict {
 		this.dict;
 		^dynDict;
-
 	}
+
 	asString { 
 		var list;
 		list = this.scList;
-		 ^scale.at(list.indexIn(scDyn))
-	
+		 ^scale.at(list.indexIn(scDyn))	
 	}
 
 	string_ { arg newValue;
 		this.dict;
 		scDyn = dynDict[newValue];
-	
-	}
-	
+	}	
 	
 	str_ { arg newValue;
 		this.dict;
 		scDyn = dynDict[newValue];
-	
 	}
 
 }
