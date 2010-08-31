@@ -1,6 +1,5 @@
 /*
 	FMChord.sc
-	SCLy project
 
 	Creates a 'Frequency Modulation' Chord 
 	Arguments: carrier, modulator, index
@@ -16,14 +15,12 @@
 	a.diffChord	
 	a.fmChord	
 
-	
-
  Created by Bernardo Barros on 2010-05-19.
  Copyright 2010 All rights reserved.
 */
 
 
-FMChord : LyChord {
+FMChord : LilyChord {
 
 	var <>car, <>mod, <>index;
 
@@ -38,14 +35,12 @@ FMChord : LyChord {
 		index = thisIndex;
 	}
 
-
-	
 	addChord {
 		var addChordCps;
 		addChordCps = index.collect {|i|
 			(car+60).midicps + ((i+1) * (mod+60).midicps);	
 		};
-		^Chord.new(addChordCps.cpsmidi - 60);
+		^LilyChord.new(addChordCps.cpsmidi - 60);
 	}
 
 
@@ -54,11 +49,11 @@ FMChord : LyChord {
 		diffChordCps = index.collect {|i|
 			(car+60).midicps - ((i+1) * (mod+60).midicps);	
 		};
-		^Chord.new(diffChordCps.cpsmidi - 60);
+		^LilyChord.new(diffChordCps.cpsmidi - 60);
 	}
 
 	fmChord {	
-		^Chord.new(
+		^LilyChord.new(
 			(this.diffChord.notenumber) ++ (this.addChord.notenumber)
 		);
 	}
