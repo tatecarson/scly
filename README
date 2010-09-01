@@ -11,6 +11,10 @@ System dependencies: Lilypond
               
 ---
 
+Edit the ./setup.sc file to adapt everything to your system if necessary
+
+---
+
 (c) 2009-2010 Bernardo Barros
 License: GPL 
 (see COPYING)
